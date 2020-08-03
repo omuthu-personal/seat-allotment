@@ -6,6 +6,6 @@
 * Execute the python file
   * python seat_allotment.py
 
-* Output will be in [output.html] (output.html)
+* Output will be in [output.html](output.html)
 
-* Unit tests done in [test_cases.py] (test_cases.py)
+* Unit tests done in test_cases.py
