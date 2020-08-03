@@ -6,7 +6,8 @@ seats=[]
 aisleSeats=[]
 windowSeats=[]
 centerSeats=[]
-freeSeats=[]
+allocatedSeats=[]
+passengerSeats=[]
 
 ### Functions for test cases ###
 
@@ -22,6 +23,10 @@ def getCenterSeats(seatMap):
     
     return centerSeats
 
+def getSeatPosition(passengerId):
+
+    return passengerSeats[passengerId-1]
+
 ################################
 
 def allocateSeats(passengersCount):
@@ -33,7 +38,8 @@ def allocateSeats(passengersCount):
             bay = seat[0]
             row = seat[1]
             col = seat[2]
-            freeSeats[bay][row][col] = p+1
+            allocatedSeats[bay][row][col] = p+1
+            passengerSeats.append([bay, row, col])
         else:
             break
         
@@ -47,7 +53,7 @@ def printToHtml(fileName):
     </style>
     """
     finalHtml = tableStyle
-    for bay in freeSeats:
+    for bay in allocatedSeats:
         num = np.array(bay)
         df = pd.DataFrame(num)
         html = df.to_html(index=False, header=False)
@@ -58,23 +64,24 @@ def printToHtml(fileName):
     f.close()
 
 def classifySeats(seatMap):
-    global seats, aisleSeats, windowSeats, centerSeats, freeSeats
+    global seats, aisleSeats, windowSeats, centerSeats, allocatedSeats, passengerSeats
     seats=[]
     aisleSeats=[]
     windowSeats=[]
     centerSeats=[]
-    freeSeats=[]
+    allocatedSeats=[]
+    passengerSeats=[]
     firstColumn = 0
     firstBay = 0
     lastBay = len(seatMap) - 1
     for idx, bay in enumerate(seatMap, start=0):
       cols=bay[0]
       rows=bay[1]
-      freeSeats.insert(idx, []) #Create each bay
+      allocatedSeats.insert(idx, []) #Create each bay
       for row in range(0, rows):
-        freeSeats[idx].insert(row, []) #Create row in each bay
+        allocatedSeats[idx].insert(row, []) #Create row in each bay
         for col in range(0, cols):
-            freeSeats[idx][row].insert(col, None)
+            allocatedSeats[idx][row].insert(col, None)
             if col == firstColumn: # First column in bay
                 if idx == firstBay:
                     windowSeats.insert(row, [idx, row, col])
