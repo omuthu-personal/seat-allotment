@@ -30,7 +30,6 @@ def allocateSeats(passengersCount):
     for p in range(passengersCount):
         if p < seatCount:
             seat = seats[p]
-            print ('seat :', seat)
             bay = seat[0]
             row = seat[1]
             col = seat[2]
