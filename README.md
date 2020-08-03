@@ -1,12 +1,11 @@
 # seat-allotment
 
-First install the packages in requirements.txt
+* First, install the packages in requirements.txt
+  * pip install -r requirements.txt
 
-pip install -r requirements.txt
+* Execute the python file
+  * python seat_allotment.py
 
-Execute the python file
-python seat_allotment.py
+* Output will be in [output.html] (output.html)
 
-output will be in output.html
-
-Unit Tests done in test_cases.py
+* Unit tests done in [test_cases.py] (test_cases.py)
